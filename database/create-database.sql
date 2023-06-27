@@ -73,7 +73,7 @@ create table staff(
     employeesCode varchar(20),
     userId int unsigned not null,
     foreign key (userId) references user(id),
-    positionUser nvarchar(50),
+    positionStaff nvarchar(50),
     status enum('active','deactive'),
     primary key(id,employeesCode,hotelId)
 );
@@ -92,6 +92,7 @@ create table accounts(
     accPassword varchar(60),
     needChangePassword tinyint default 1,
     permisson text
+    status enum('pendding','approve','reject')
 );
 
 #create ActivityHistory
