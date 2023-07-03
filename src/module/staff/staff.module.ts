@@ -7,7 +7,11 @@ import { Account } from './entities/account.entity';
 import { ActivityHistory } from './entities/activity-history.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Staff, Account, ActivityHistory])],
+    imports: [
+        TypeOrmModule.forFeature([Staff]),
+        TypeOrmModule.forFeature([Account], 'accountConection'),
+        TypeOrmModule.forFeature([ActivityHistory], 'activityHistoryConection'),
+    ],
     controllers: [StaffController],
     providers: [StaffService],
 })

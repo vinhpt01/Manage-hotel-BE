@@ -18,7 +18,6 @@ export interface CreateUserDto {
 }
 
 export interface UpdateUserDto {
-    id: number;
     firstNam?: string;
     lastName?: string;
     numberPhone?: string;

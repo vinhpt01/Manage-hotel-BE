@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { BaseSchema } from 'src/common/entitys/base-schema';
 import {
     Column,

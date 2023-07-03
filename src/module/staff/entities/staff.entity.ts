@@ -8,7 +8,6 @@ import {
     JoinColumn,
     ManyToOne,
     OneToOne,
-    PrimaryColumn,
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { StatusStaff } from '../staff.constants';

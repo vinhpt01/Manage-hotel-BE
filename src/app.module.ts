@@ -6,8 +6,6 @@ import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 import validateSchema from './common/config/validateSchema';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserController } from './module/user/user.controller';
-import { UserService } from './module/user/user.service';
 import { User } from './module/user/entities/user.entity';
 import { Staff } from './module/staff/entities/staff.entity';
 import { Company } from './module/company/entities/company.entity';
@@ -18,6 +16,7 @@ import { BookingSchedule } from './module/booking/entities/booking-schedule.enti
 import { Room } from './module/room/entities/room.entity';
 import { Bill } from './module/bill/entities/bill.entity';
 import { BillDetail } from './module/bill/entities/bill-detail.entity';
+import { UserModule } from './module/user/user.module';
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -55,9 +54,11 @@ import { BillDetail } from './module/bill/entities/bill-detail.entity';
                 BillDetail,
             ],
             synchronize: true,
+            logging: ['error'],
         }),
+        UserModule,
     ],
-    controllers: [AppController, UserController],
-    providers: [AppService, UserService],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}

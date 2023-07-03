@@ -1,25 +1,57 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './user.interfaces';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
+import { DataSource, IsNull, Repository } from 'typeorm';
+import { softDeleteCondition } from 'src/common/entitys/constants';
 
 @Injectable()
 export class UserService {
-    create(createUserDto: CreateUserDto) {
-        return 'This action adds a new user';
+    constructor(
+        @InjectRepository(User)
+        private readonly usersRepository: Repository<User>,
+        @InjectDataSource()
+        private readonly dataSource: DataSource
+    ) {}
+    async create(createUserDto: CreateUserDto) {
+        try {
+            await this.usersRepository.insert(createUserDto);
+            return await this.usersRepository.findOneBy(createUserDto);
+        } catch (error) {
+            throw error;
+        }
     }
 
-    findAll() {
-        return `This action returns all user`;
+    async findAll() {
+        return this.usersRepository.find();
     }
 
     findOne(id: number) {
-        return `This action returns a #${id} user`;
+        return this.usersRepository.findOneBy({ id: id, ...softDeleteCondition });
     }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} user`;
+    async update(id: number, updateUserDto: UpdateUserDto) {
+        const queryRuner = this.dataSource.createQueryRunner();
+        await queryRuner.connect();
+        await queryRuner.startTransaction();
+        try {
+            await queryRuner.manager.update(User, id, updateUserDto);
+            await queryRuner.commitTransaction();
+        } catch (error) {
+            await queryRuner.rollbackTransaction();
+            throw error;
+        } finally {
+            await queryRuner.release();
+        }
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} user`;
+    async removeById(id: number) {
+        try {
+            await this.dataSource.transaction(async (entityUser) => {
+                entityUser.softDelete(User, id);
+            });
+        } catch (error) {
+            throw error;
+        }
     }
 }

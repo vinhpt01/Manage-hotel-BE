@@ -17,30 +17,30 @@ export class User extends BaseSchema {
     @Column('varchar', { length: 20 })
     numberPhone: string;
 
-    @Column('varchar', { length: 30 })
+    @Column('varchar', { length: 30, nullable: true })
     citizenIdentification: string;
 
-    @Column()
+    @Column({ nullable: true })
     birthDay: Date;
 
-    @Column('varchar', { length: 20 })
+    @Column('varchar', { length: 20, nullable: true })
     taxCode: string;
 
-    @Column({ type: 'text' })
+    @Column({ type: 'text', nullable: true })
     address: string;
 
-    @Column('nvarchar', { length: 30 })
+    @Column('nvarchar', { length: 30, nullable: true })
     job: string;
 
-    @Column('varchar', { length: 255 })
+    @Column('varchar', { length: 255, nullable: true })
     email: string;
 
-    @Column('nvarchar', { length: 50 })
+    @Column('nvarchar', { length: 50, nullable: true })
     folk: string;
 
-    @Column('nvarchar', { length: 50 })
+    @Column('nvarchar', { length: 50, nullable: true })
     religion: string;
 
-    @Column('varchar', { length: 30 })
+    @Column('varchar', { length: 30, nullable: true })
     country: string;
 }
