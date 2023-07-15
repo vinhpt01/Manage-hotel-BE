@@ -26,6 +26,12 @@ export class BadRequestException extends BaseException {
     }
 }
 
+export class UnauthorizedException extends BaseException {
+    constructor(errors: any) {
+        super(HttpStatus.UNAUTHORIZED, 'Unauthorized Exception', errors);
+    }
+}
+
 @Catch(BaseException)
 export class HttpExceptionFilter implements ExceptionFilter {
     catch(exception: BaseException, host: ArgumentsHost) {

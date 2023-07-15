@@ -1,0 +1,6 @@
+{
+    "success": "Success",
+    "auth": {
+        "refreshToken": "Refresh token success"
+    }
+}

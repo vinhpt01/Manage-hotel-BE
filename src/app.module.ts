@@ -17,6 +17,13 @@ import { Room } from './module/room/entities/room.entity';
 import { Bill } from './module/bill/entities/bill.entity';
 import { BillDetail } from './module/bill/entities/bill-detail.entity';
 import { UserModule } from './module/user/user.module';
+import { StaffModule } from './module/staff/staff.module';
+import { RoomModule } from './module/room/room.module';
+import { HotelModule } from './module/hotel/hotel.module';
+import { CompanyModule } from './module/company/company.module';
+import { BookingModule } from './module/booking/booking.module';
+import { BillModule } from './module/bill/bill.module';
+import { AuthModule } from './module/auth/auth.module';
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -57,6 +64,13 @@ import { UserModule } from './module/user/user.module';
             logging: ['error'],
         }),
         UserModule,
+        StaffModule,
+        RoomModule,
+        HotelModule,
+        CompanyModule,
+        BookingModule,
+        BillModule,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -1,5 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { CompanyService } from './company.service';
+import { InternalSeverException } from 'src/common/helpers/http-exception.filter';
+import { SucessResponse } from 'src/common/helpers/constants';
+import { I18nContext } from 'nestjs-i18n';
 @Controller('company')
 export class CompanyController {
     constructor(private readonly companyService: CompanyService) {}

@@ -1,0 +1,6 @@
+{
+    "success": "Thành công",
+    "auth": {
+        "refreshToken": "Làm mới token thành công"
+    }
+}

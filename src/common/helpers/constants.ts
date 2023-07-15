@@ -23,41 +23,51 @@ export enum HttpStatus {
 }
 
 export class SucessResponse<T> {
-    constructor(message: string, data: T, code: number = HttpStatus.OK) {
+    constructor(message: string, data?: T, status: number = HttpStatus.OK) {
         return {
-            code,
+            status,
             message,
-            data,
+            data: data || {},
+        };
+    }
+}
+
+export class ErrorResponse<T> {
+    constructor(message: string, status: number, errors?: T) {
+        return {
+            status,
+            message,
+            errors: errors || {},
         };
     }
 }
 
 export class UnauthorizedResponse<T> {
-    constructor(message: string, errors: T, code: number = HttpStatus.UNAUTHORIZED) {
+    constructor(message: string, errors?: T, status: number = HttpStatus.UNAUTHORIZED) {
         return {
-            code,
+            status,
             message,
-            errors,
+            errors: errors || {},
         };
     }
 }
 
 export class BadRequestResponse<T> {
-    constructor(message: string, errors: T, code: number = HttpStatus.BAD_REQUEST) {
+    constructor(message: string, errors?: T, status: number = HttpStatus.BAD_REQUEST) {
         return {
-            code,
+            status,
             message,
-            errors,
+            errors: errors || {},
         };
     }
 }
 
 export class ForbidenResponse<T> {
-    constructor(message: string, errors: T, code: number = HttpStatus.FORBIDDEN) {
+    constructor(message: string, errors?: T, status: number = HttpStatus.FORBIDDEN) {
         return {
-            code,
+            status,
             message,
-            errors,
+            errors: errors || {},
         };
     }
 }

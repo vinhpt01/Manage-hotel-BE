@@ -8,3 +8,8 @@ export enum StatusAccount {
     APPROVE = 'approve',
     REJECT = 'reject',
 }
+
+export enum Role {
+    ADMIN = 'admin',
+    USER = 'user',
+}

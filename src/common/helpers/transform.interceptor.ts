@@ -6,9 +6,10 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { InternalSeverException } from './http-exception.filter';
 
 export interface Response<T> {
-    code: number;
+    status: number;
     message: string;
     data?: T;
     error?: T;
@@ -21,7 +22,10 @@ export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> 
         const response = ctx.getResponse();
         return next.handle().pipe(
             map((data) => {
-                response.status(data.code);
+                if (!data?.status) {
+                    throw new InternalSeverException(new Error('Undefine status'));
+                }
+                response.status(data.status);
                 return data;
             })
         );

@@ -11,13 +11,14 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { StatusStaff } from '../staff.constants';
+import { BaseSchema } from 'src/common/entitys/base-schema';
 @Entity()
-export class Staff extends BaseEntity {
+export class Staff extends BaseSchema {
     @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
     @Index({ unique: true })
     id: number;
 
-    @ManyToOne((type) => Hotel)
+    @ManyToOne(() => Hotel)
     @JoinColumn({ name: 'hotelId', referencedColumnName: 'id' })
     hotel: Hotel;
 
@@ -30,6 +31,9 @@ export class Staff extends BaseEntity {
 
     @Column({ type: 'nvarchar', length: 50 })
     positionStaff: string;
+
+    @Column({ type: 'text' })
+    permission: string;
 
     @Column({ type: 'enum', enum: StatusStaff })
     status: StatusStaff;

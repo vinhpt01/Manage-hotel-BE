@@ -1,5 +1,5 @@
 import { BaseSchema } from 'src/common/entitys/base-schema';
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Company extends BaseSchema {
     @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
@@ -7,8 +7,9 @@ export class Company extends BaseSchema {
     id: number;
 
     @Column({ type: 'varchar', length: 255, nullable: false })
+    @PrimaryColumn()
     @Index({ fulltext: true })
-    dustinguishedName: string;
+    distinguishedName: string;
 
     @Column({ type: 'nvarchar', length: 255, nullable: false })
     nameCompany: string;

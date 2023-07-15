@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { SucessResponse } from './common/helpers/constants';
 
 @Controller()
 export class AppController {
@@ -7,6 +8,6 @@ export class AppController {
 
     @Get('/')
     async ping() {
-        return this.appService.ping();
+        return new SucessResponse(await this.appService.ping());
     }
 }

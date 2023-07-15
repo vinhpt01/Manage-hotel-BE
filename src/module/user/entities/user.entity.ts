@@ -20,7 +20,7 @@ export class User extends BaseSchema {
     @Column('varchar', { length: 30, nullable: true })
     citizenIdentification: string;
 
-    @Column({ nullable: true })
+    @Column({ type: 'date', nullable: true })
     birthDay: Date;
 
     @Column('varchar', { length: 20, nullable: true })

@@ -1,0 +1,7 @@
+{
+    "notfound": "Not found!",
+    "unauthorized": "Unauthorized!",
+    "auth": {
+        "refreshTokenInvalid": "Token Invalid"
+    }
+}

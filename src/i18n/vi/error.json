@@ -1,0 +1,7 @@
+{
+    "notfound": "Không tìm thấy!",
+    "unauthorized": "Xác thực thất bại!",
+    "auth": {
+        "refreshTokenInvalid": "Token không chính xác"
+    }
+}

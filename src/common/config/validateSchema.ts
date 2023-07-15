@@ -1,7 +1,7 @@
 import * as Joi from 'joi';
 export default {
     validationSchema: Joi.object({
-        WHITE_LIST_ORIGIN: Joi.string(),
+        WHITE_LIST_ORIGIN: Joi.string().required(),
         PORT: Joi.number().default(3000),
         DATABASE_NAME: Joi.string().required(),
         DATABASE_HOST: Joi.string().required(),

@@ -5,14 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Staff } from './entities/staff.entity';
 import { Account } from './entities/account.entity';
 import { ActivityHistory } from './entities/activity-history.entity';
+import { AccountService } from './service/account.service';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([Staff]),
-        TypeOrmModule.forFeature([Account], 'accountConection'),
-        TypeOrmModule.forFeature([ActivityHistory], 'activityHistoryConection'),
-    ],
+    imports: [TypeOrmModule.forFeature([Staff, Account, ActivityHistory])],
     controllers: [StaffController],
-    providers: [StaffService],
+    providers: [StaffService, AccountService, ActivityHistory],
+    exports: [AccountService],
 })
 export class StaffModule {}

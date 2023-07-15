@@ -8,7 +8,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Staff } from './staff.entity';
-import { StatusAccount } from '../staff.constants';
+import { Role, StatusAccount } from '../staff.constants';
 
 @Entity()
 export class Account extends BaseSchema {
@@ -29,8 +29,11 @@ export class Account extends BaseSchema {
     @Column({ type: 'boolean', default: true })
     needChangePassword: boolean;
 
-    @Column({ type: 'text' })
-    permission: string;
+    @Column({ type: 'enum', enum: Role })
+    roleHotel: string;
+
+    @Column({ type: 'enum', enum: Role })
+    roleSystem: string;
 
     @Column({ type: 'enum', enum: StatusAccount })
     status: StatusAccount;
